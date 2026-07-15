@@ -1,0 +1,24 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /home/cowrie/cowrie/var/log/cowrie/cowrie.json*
+    fields:
+      log_type: cowrie
+    json.keys_under_root: true
+
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/suricata/eve.json
+    fields:
+      log_type: suricata
+    json.keys_under_root: true
+
+output.elasticsearch:
+  hosts: ["192.168.3.147:9200"]
+  username: "elastic"
+  password: "Wazuh1234"
+
+setup.kibana:
+  host: "192.168.3.147:5601"
